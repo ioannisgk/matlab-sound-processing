@@ -412,6 +412,9 @@ paused = 0;
 % --- Executes on button press in monoButton1.
 function monoButton1_Callback(hObject, eventdata, handles)
 % Make sound mono by adding zeros to the right channel
+
+figure(MonoDialog);
+
 global sound1;
 leftChannel = sound1(:, 1);
 sound1 = [leftChannel, zeros(size(leftChannel))];
@@ -427,6 +430,9 @@ sound2 = [leftChannel, zeros(size(leftChannel))];
 function echoButton1_Callback(hObject, eventdata, handles)
 % http://ashanpeiris.blogspot.gr/2015/03/how-to-add-echo-effect-to-audio-signal.html
 % Add echo to sound 1
+
+figure(EchoDialog);
+
 global sound1;
 delay = 0.5; % 0.5s delay  
 alpha = 0.65; % echo strength  
