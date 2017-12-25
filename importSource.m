@@ -8,6 +8,7 @@ global rate1;
 global numChannels1;
 global duration1;
 global active;
+global m1;
 
 % Global variables for source 2
 global FileName2;
@@ -15,6 +16,7 @@ global sound2;
 global rate2;
 global numChannels2;
 global duration2;
+global m2;
 
 % Let user to browse for a file
 [FileName,PathName] = uigetfile('*.wav*','Select an audio file');
@@ -39,6 +41,9 @@ if source == 1
     axes(handles.axes1);
     plotSound(sound, rate);
     
+    % Add vertical marker at starting position
+    m1=line(0,0,[-30,30],'color','r','marker', 'o', 'linewidth', 1);
+    
     % Update source 1 controls
     set(handles.audioFormatInfo1, 'String', format);
     set(handles.channelsInfo1, 'String', numChannels);
@@ -61,6 +66,9 @@ elseif source == 2
     % Plot sound and set axis labels and max length
     axes(handles.axes2);
     plotSound(sound, rate);
+    
+    % Add vertical marker at starting position
+    m2=line(0,0,[-30,30],'color','r','marker', 'o', 'linewidth', 1);
 
     % Update source 1 controls
     set(handles.audioFormatInfo2, 'String', format);
