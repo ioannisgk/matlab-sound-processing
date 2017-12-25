@@ -29,9 +29,16 @@ if source == 1
     duration1 = length(sound1)/rate1;
     time = seconds2time(duration1);
     
-    % Update source 1 controls
+    % Plot sound and set axis labels and max length
     axes(handles.axes1);
     plot((0:length(sound1)-1)/rate1, sound1);
+    xlabel('Time (s)'); ylabel('Amplitude');
+    axis([0 length(sound1)/rate1 -1 1]);
+    grid on;
+    ax = gca;
+    ax.FontSize = 8;
+
+    % Update source 1 controls
     set(handles.selectStart1, 'String', '00:00:00');
     set(handles.selectEnd1, 'String', time);
     set(handles.totalTime1, 'String', time);
@@ -53,9 +60,16 @@ elseif source == 2
     duration2 = length(sound2)/rate2;
     time = seconds2time(duration2);
     
-    % Update source 2 controls
+    % Plot sound and set axis labels and max length
     axes(handles.axes2);
     plot((0:length(sound2)-1)/rate2, sound2);
+    xlabel('Time (s)'); ylabel('Amplitude');
+    axis([0 length(sound2)/rate2 -1 1]);
+    grid on;
+    ax = gca;
+    ax.FontSize = 8;
+
+    % Update source 1 controls
     set(handles.selectStart2, 'String', '00:00:00');
     set(handles.selectEnd2, 'String', time);
     set(handles.totalTime2, 'String', time);

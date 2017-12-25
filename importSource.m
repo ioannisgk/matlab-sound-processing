@@ -35,9 +35,16 @@ numChannels = rawFile(23);
 fclose(fileID);
 
 if source == 1
-    % Update source 1 controls
+    % Plot sound and set axis labels and max length
     axes(handles.axes1);
     plot((0:length(sound)-1)/rate, sound);
+    xlabel('Time (s)'); ylabel('Amplitude');
+    axis([0 length(sound)/rate -1 1]);
+    grid on;
+    ax = gca;
+    ax.FontSize = 8;
+    
+    % Update source 1 controls
     set(handles.audioFormatInfo1, 'String', format);
     set(handles.channelsInfo1, 'String', numChannels);
     set(handles.sampleRateInfo1, 'String', rate);
@@ -56,9 +63,16 @@ if source == 1
     active = 1;
     
 elseif source == 2
-    % Update source 2 controls
+    % Plot sound and set axis labels and max length
     axes(handles.axes2);
     plot((0:length(sound)-1)/rate, sound);
+    xlabel('Time (s)'); ylabel('Amplitude');
+    axis([0 length(sound)/rate -1 1]);
+    grid on;
+    ax = gca;
+    ax.FontSize = 8;
+
+    % Update source 1 controls
     set(handles.audioFormatInfo2, 'String', format);
     set(handles.channelsInfo2, 'String', numChannels);
     set(handles.sampleRateInfo2, 'String', rate);
