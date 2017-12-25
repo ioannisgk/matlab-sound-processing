@@ -278,31 +278,8 @@ function sampleRateInfo2_Callback(hObject, eventdata, handles)
 
 % --- Executes on button press in stopButton.
 function stopButton_Callback(hObject, eventdata, handles)
-% Stop player
-global player;
-global paused;
-global active;
-global m1;
-global m2
-
-% Stop player
-stop(player);
-paused = 0;
-
-if active == 1
-    % If marker m1 exists, delete it and create new marker at position 0
-    if exist('m1', 'var')
-        delete(m1);
-    end
-    m1=line([0,0],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
-
-elseif active == 2
-    % If marker m2 exists, delete it and create new marker at position 0
-    if exist('m2', 'var')
-        delete(m2);
-    end
-    m2=line([0,0],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
-end
+% Stop player and reset paused and markers
+stopPlaying();
 
 % --- Executes on button press in pauseButton.
 function pauseButton_Callback(hObject, eventdata, handles)
@@ -402,7 +379,6 @@ function importSource2Button_Callback(hObject, eventdata, handles)
 % Import source 2 and update controls
 importSource(handles, 2);
 
-
 % --- Executes on button press in activeSource1.
 function activeSource1_Callback(hObject, eventdata, handles)
 % Set active value to 1 when source 1 is active
@@ -440,14 +416,12 @@ global sound1;
 leftChannel = sound1(:, 1);
 sound1 = [leftChannel, zeros(size(leftChannel))];
 
-
 % --- Executes on button press in monoButton2.
 function monoButton2_Callback(hObject, eventdata, handles)
 % Make sound mono by adding zeros to the right channel
 global sound2;
 leftChannel = sound2(:, 1);
 sound2 = [leftChannel, zeros(size(leftChannel))];
-
 
 % --- Executes on button press in echoButton1.
 function echoButton1_Callback(hObject, eventdata, handles)

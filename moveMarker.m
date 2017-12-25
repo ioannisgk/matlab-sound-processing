@@ -31,6 +31,7 @@ while isplaying(player)
             delete(m2);
         end
         m2=line([t,t],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
+        
     end
                 
     % Fix for exitting loop when player is stopped

@@ -6,12 +6,14 @@ global FileName1;
 global sound1;
 global rate1;
 global duration1;
+global m1;
 
 % Global variables for source 2
 global FileName2;
 global sound2;
 global rate2;
 global duration2;
+global m2;
 
 if source == 1
     % Convert start time and end time in seconds
@@ -32,6 +34,12 @@ if source == 1
     % Plot sound and set axis labels and max length
     axes(handles.axes1);
     plotSound(sound1, rate1);
+    
+    % Delete old marker and create a new one
+    if exist('m1', 'var')
+        delete(m1);
+    end
+    m1=line([0,0],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
 
     % Update source 1 controls
     set(handles.selectStart1, 'String', '00:00:00');
@@ -58,6 +66,12 @@ elseif source == 2
     % Plot sound and set axis labels and max length
     axes(handles.axes2);
     plotSound(sound2, rate2);
+    
+    % Delete old marker and create a new one
+    if exist('m2', 'var')
+        delete(m2);
+    end
+    m2=line([0,0],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
 
     % Update source 1 controls
     set(handles.selectStart2, 'String', '00:00:00');

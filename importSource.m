@@ -2,6 +2,8 @@ function [] = importSource(handles, source)
 % Function to import sources and update controls
 
 % Global variables for source 1
+global player;
+global paused;
 global FileName1;
 global sound1;
 global rate1;
@@ -37,12 +39,18 @@ numChannels = rawFile(23);
 fclose(fileID);
 
 if source == 1
+    
+    paused = 0;
+    
     % Plot sound and set axis labels and max length
     axes(handles.axes1);
     plotSound(sound, rate);
     
-    % Add vertical marker at starting position
-    m1=line(0,0,[-30,30],'color','r','marker', 'o', 'linewidth', 1);
+    % Delete old marker and create a new one
+    if exist('m1', 'var')
+        delete(m1);
+    end
+    m1=line([0,0],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
     
     % Update source 1 controls
     set(handles.audioFormatInfo1, 'String', format);
@@ -63,12 +71,18 @@ if source == 1
     active = 1;
     
 elseif source == 2
+    
+    paused = 0;
+    
     % Plot sound and set axis labels and max length
     axes(handles.axes2);
     plotSound(sound, rate);
     
-    % Add vertical marker at starting position
-    m2=line(0,0,[-30,30],'color','r','marker', 'o', 'linewidth', 1);
+    % Delete old marker and create a new one
+    if exist('m2', 'var')
+        delete(m2);
+    end
+    m2=line([0,0],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
 
     % Update source 1 controls
     set(handles.audioFormatInfo2, 'String', format);

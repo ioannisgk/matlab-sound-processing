@@ -29,6 +29,10 @@ makeSoundsEqualLength();
 % Create new mixed sound
 mixedSound = (sound1 * volume1) + (sound2 * volume2);
 
+% Remove silence at the end of mixed track
+endSample = length(mixedSound) - numberofSamples;
+mixedSound = mixedSound(1:round(endSample),:);
+
 % Normalize mixed sound to prevent clipping
 % https://www.mathworks.com/matlabcentral/answers/55652-warning-data-clipped-during-write-to-file
 mixedSound = mixedSound./(max(abs(mixedSound)));
