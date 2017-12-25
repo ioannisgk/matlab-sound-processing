@@ -15,29 +15,16 @@ global duration2;
 startTime = get(handles.selectTime,'String');
 startSeconds = time2seconds(startTime);
     
-% Calculate new start sample
-startSample = startSeconds * rate1;
+% Calculate silence samples
+numberofSamples = startSeconds * rate1;
 
-% Update sound
-sound1 = sound1(round(startSample+1):length(sound1),:);
-duration1 = length(sound1)/rate1;
+% Add silence to start of sound 2
+silence = zeros(numberofSamples , 2);
+sound2 = [silence; sound2];
+duration2 = length(sound2)/rate2;
 
-% Get lengths from both sounds
-endSample1 = length(sound1);
-endSample2 = length(sound2);
-
-% Check sound lengths and add silence if necessary
-if duration1 > duration2 
-
-    % Add silence to end of sound 2
-    silence = zeros((endSample1-endSample2) , 2);
-    sound2 = [sound2; silence];
-elseif duration1 < duration2
-        
-    % Add silence to end of sound 1
-    silence = zeros((endSample2-endSample1) , 2);
-    sound1 = [sound1; silence];
-end
+% Make sounds equal length by adding silence
+makeSoundsEqualLength();
 
 % Create new mixed sound
 mixedSound = (sound1 * volume1) + (sound2 * volume2);
@@ -48,4 +35,5 @@ mixedSound = mixedSound./(max(abs(mixedSound)));
     
 % Save mixed sound to file
 exportFilename = get(handles.exportFilename,'String');
+exportFilename = [exportFilename '.wav'];
 audiowrite(exportFilename, mixedSound, rate1);

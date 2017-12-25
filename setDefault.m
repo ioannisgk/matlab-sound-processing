@@ -45,4 +45,4 @@ set(handles.speedSliderText2, 'String', '1.00');
 set(handles.volumeSliderText2, 'String', '1.00');
 set(handles.filterSliderText2, 'String', '1.00');
 set(handles.selectTime, 'String', '00:00:00');
-set(handles.exportFilename, 'String', '');
+set(handles.exportFilename, 'String', 'Filename');

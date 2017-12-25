@@ -31,7 +31,7 @@ if source == 1
     
     % Update source 1 controls
     axes(handles.axes1);
-    plot(sound1);
+    plot((0:length(sound1)-1)/rate1, sound1);
     set(handles.selectStart1, 'String', '00:00:00');
     set(handles.selectEnd1, 'String', time);
     set(handles.totalTime1, 'String', time);
@@ -53,9 +53,9 @@ elseif source == 2
     duration2 = length(sound2)/rate2;
     time = seconds2time(duration2);
     
-    % Update source 1 controls
+    % Update source 2 controls
     axes(handles.axes2);
-    plot(sound2);
+    plot((0:length(sound2)-1)/rate2, sound2);
     set(handles.selectStart2, 'String', '00:00:00');
     set(handles.selectEnd2, 'String', time);
     set(handles.totalTime2, 'String', time);
