@@ -9,6 +9,7 @@ global sound1;
 global rate1;
 global duration1;
 global numChannels1;
+global m;
 
 % Global variables for source 2
 global sound2;
@@ -31,6 +32,25 @@ if strcmp(mode, 'active')
         else
             player = audioplayer(sound1 * volume1, rate1 * speed1);
             play(player);
+            
+            while isplaying(player)
+                % Get current sample and convert it to current time t
+                currentSample = get(player,'CurrentSample');
+                t = currentSample/rate1;
+                
+                % If marker m exists, delete it
+                if exist('m', 'var')
+                    delete(m);
+                end
+
+                % Draw new marker m
+                m=line([t,t],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
+                
+                % Fix for exitting loop when player is stopped
+                % https://www.mathworks.com/matlabcentral/answers/46603-audioplayer-isplaying-won-t-exit-tight-loop
+                pause(0.00001);
+                
+            end
         end
 
     elseif active == 2

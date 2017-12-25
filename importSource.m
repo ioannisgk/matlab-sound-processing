@@ -37,12 +37,7 @@ fclose(fileID);
 if source == 1
     % Plot sound and set axis labels and max length
     axes(handles.axes1);
-    plot((0:length(sound)-1)/rate, sound);
-    xlabel('Time (s)'); ylabel('Amplitude');
-    axis([0 length(sound)/rate -1 1]);
-    grid on;
-    ax = gca;
-    ax.FontSize = 8;
+    plotSound(sound, rate);
     
     % Update source 1 controls
     set(handles.audioFormatInfo1, 'String', format);
@@ -65,12 +60,7 @@ if source == 1
 elseif source == 2
     % Plot sound and set axis labels and max length
     axes(handles.axes2);
-    plot((0:length(sound)-1)/rate, sound);
-    xlabel('Time (s)'); ylabel('Amplitude');
-    axis([0 length(sound)/rate -1 1]);
-    grid on;
-    ax = gca;
-    ax.FontSize = 8;
+    plotSound(sound, rate);
 
     % Update source 1 controls
     set(handles.audioFormatInfo2, 'String', format);
