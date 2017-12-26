@@ -189,7 +189,7 @@ function filterSlider2_Callback(hObject, eventdata, handles)
 % Update slider text
 value = get(hObject, 'Value');
 set(handles.filterSliderText2, 'String', value);
-applyFilter(handles, 2);
+applyFilter(handles, 2, 'one-setting');
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
@@ -340,7 +340,7 @@ function filterSlider1_Callback(hObject, eventdata, handles)
 % Update slider text
 value = get(hObject, 'Value');
 set(handles.filterSliderText1, 'String', value);
-applyFilter(handles, 1);
+applyFilter(handles, 1, 'one-setting');
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider

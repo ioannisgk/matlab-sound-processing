@@ -1,15 +1,15 @@
-function [] = calculateLowPass(handles, mode)
-% Function to calculate low pass filter parameters
+function [] = calculateHighPass(handles, mode)
+% Function to calculate high pass filter parameters
 
 global active;
 global Hd;
 
 if strcmp(mode, 'all-settings')
     % Passband frequency
-    Fp = 3 * str2num(get(handles.FpText, 'String'));
+    Fp = 5 * (str2num(get(handles.FpText, 'String')) * 1.5);
     
     % Stopband frequency
-    Fst = 5 * str2num(get(handles.FstText, 'String'));
+    Fst = 3 * (str2num(get(handles.FstText, 'String')) * 0.7);
     
     % Passband ripple in dB
     Ap = 0.5 * (str2num(get(handles.ApText, 'String')) * 2);
@@ -20,18 +20,18 @@ if strcmp(mode, 'all-settings')
     % Frequency rate
     rate = 100 * (str2num(get(handles.rateText, 'String')) * 2);
     
-    % Create low pass filter
-    d = fdesign.lowpass('Fp,Fst,Ap,Ast',Fp,Fst,Ap,Ast,rate);
+    % Create high pass filter
+    d = fdesign.highpass('Fst,Fp,Ast,Ap',Fst,Fp,Ast,Ap,rate);
     
     % Create FIR equiripple filter
     Hd = design(d,'equiripple');
-
+    
 elseif strcmp(mode, 'one-setting')
     % Passband frequency
-    Fp = 3;
+    Fp = 5;
     
     % Stopband frequency
-    Fst = 5;
+    Fst = 3;
     
     % Passband ripple in dB
     Ap = 0.5;
@@ -46,8 +46,8 @@ elseif strcmp(mode, 'one-setting')
         rate = 100 * (str2num(get(handles.filterSliderText2, 'String')) * 2);
     end
     
-    % Create low pass filter
-    d = fdesign.lowpass('Fp,Fst,Ap,Ast',Fp,Fst,Ap,Ast,rate);
+    % Create high pass filter
+    d = fdesign.highpass('Fst,Fp,Ast,Ap',Fst,Fp,Ast,Ap,rate);
     
     % Create FIR equiripple filter
     Hd = design(d,'equiripple');
