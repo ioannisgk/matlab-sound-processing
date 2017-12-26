@@ -7,6 +7,7 @@ global filter1;
 global sound2;
 global rate2;
 global filter2;
+global Hd;
 
 % https://www.mathworks.com/matlabcentral/answers/37462-a-simple-lowpass-filter
 % https://www.mathworks.com/help/signal/ref/fdesign.lowpass.html
@@ -14,28 +15,18 @@ global filter2;
 
 if strcmp(filter1, 'low')
     
-    % Passband frequency
-    Fp = 3;
+    % calculate low pass filter parameters
+    calculateLowPass(handles);
     
-    % Stopband frequency
-    Fst = 5;
-    
-    % Passband ripple in dB
-    Ap = 0.5;
-    
-    % Stopband attentuation in dB
-    Ast = 40;
-    
-    % Frequency rate
-    rate = 100;
-    
-    % Create low pass filter
-    d = fdesign.lowpass('Fp,Fst,Ap,Ast',Fp,Fst,Ap,Ast,rate);
-    
-    % Create FIR equiripple filter
-    Hd = design(d,'equiripple');
-    
-    % Apply filter to source
+    % Apply filter to source 1
     sound1 = filter(Hd, sound1);
+
+elseif strcmp(filter2, 'low')
+    
+    % calculate low pass filter parameters
+    calculateLowPass(handles);
+    
+    % Apply filter to source 2
+    sound2 = filter(Hd, sound2);
     
 end

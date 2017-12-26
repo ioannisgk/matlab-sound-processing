@@ -472,16 +472,14 @@ end
 
 % --- Executes on button press in filter1Options.
 function filter1Options_Callback(hObject, eventdata, handles)
-% hObject    handle to filter1Options (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% Open filter options dialogue
+figure(FilterDialog);
 
 
 % --- Executes on button press in filter2Options.
 function filter2Options_Callback(hObject, eventdata, handles)
-% hObject    handle to filter2Options (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% Open filter options dialogue
+figure(FilterDialog);
 
 
 % --- Executes on button press in echoButton2.
