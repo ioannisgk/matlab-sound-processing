@@ -4,8 +4,14 @@ function [] = setDefault(handles)
 % Default variables
 global volume1;
 global volume2;
+global filter1;
+global filter2;
+global mono;
 volume1 = 1;
 volume2 = 1;
+filter1 = 'high';
+filter2 = 'high';
+mono = 'left';
 
 % Default source 1 info controls
 set(handles.audioFormatInfo1, 'String', '-');

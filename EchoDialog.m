@@ -22,7 +22,7 @@ function varargout = EchoDialog(varargin)
 
 % Edit the above text to modify the response to help EchoDialog
 
-% Last Modified by GUIDE v2.5 25-Dec-2017 23:42:53
+% Last Modified by GUIDE v2.5 26-Dec-2017 15:13:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -52,6 +52,12 @@ function EchoDialog_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to EchoDialog (see VARARGIN)
 
+% Default slider settings
+set(handles.delaySlider, 'Value', 1);
+set(handles.strengthSlider, 'Value', 1);
+set(handles.delayText, 'String', '1.00');
+set(handles.strengthText, 'String', '1.00');
+
 % Choose default command line output for EchoDialog
 handles.output = hObject;
 
@@ -73,33 +79,53 @@ function varargout = EchoDialog_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% --- Executes on button press in cancelButton.
+function cancelButton_Callback(hObject, eventdata, handles)
+% Close dialogue box
+close(EchoDialog);
 
 
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% --- Executes on button press in applyButton.
+function applyButton_Callback(hObject, eventdata, handles)
+% Add echo to sound based on user settings
+
+global sound1;
+global rate1;
+global sound2;
+global rate2;
+global active;
+
+% http://ashanpeiris.blogspot.gr/2015/03/how-to-add-echo-effect-to-audio-signal.html
+delay = str2num(get(handles.delayText, 'String'));
+strength = str2num(get(handles.strengthText, 'String'));
+
+if active == 1
+    
+    D = delay * rate1;  
+    b = [1, zeros(1, round(D)), strength];  
+    sound1 = filter(b, 1, sound1);
+    
+elseif active == 2
+    
+    D = delay * rate2;  
+    b = [1, zeros(1, round(D)), strength];  
+    sound2 = filter(b, 1, sound2);
+    
+end
+
+close(EchoDialog);
 
 
 % --- Executes on slider movement.
-function slider1_Callback(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+function delaySlider_Callback(hObject, eventdata, handles)
+% Update slider text
+value = get(hObject, 'Value');
+set(handles.delayText, 'String', value);
 
 
 % --- Executes during object creation, after setting all properties.
-function slider1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
+function delaySlider_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to delaySlider (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -110,18 +136,15 @@ end
 
 
 % --- Executes on slider movement.
-function slider2_Callback(hObject, eventdata, handles)
-% hObject    handle to slider2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+function strengthSlider_Callback(hObject, eventdata, handles)
+% Update slider text
+value = get(hObject, 'Value');
+set(handles.strengthText, 'String', value);
 
 
 % --- Executes during object creation, after setting all properties.
-function slider2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider2 (see GCBO)
+function strengthSlider_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to strengthSlider (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 

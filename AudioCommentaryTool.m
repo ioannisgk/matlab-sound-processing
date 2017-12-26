@@ -412,30 +412,79 @@ paused = 0;
 % --- Executes on button press in monoButton1.
 function monoButton1_Callback(hObject, eventdata, handles)
 % Make sound mono by adding zeros to the right channel
-
 figure(MonoDialog);
-
-global sound1;
-leftChannel = sound1(:, 1);
-sound1 = [leftChannel, zeros(size(leftChannel))];
 
 % --- Executes on button press in monoButton2.
 function monoButton2_Callback(hObject, eventdata, handles)
 % Make sound mono by adding zeros to the right channel
-global sound2;
-leftChannel = sound2(:, 1);
-sound2 = [leftChannel, zeros(size(leftChannel))];
+figure(MonoDialog);
 
 % --- Executes on button press in echoButton1.
 function echoButton1_Callback(hObject, eventdata, handles)
-% http://ashanpeiris.blogspot.gr/2015/03/how-to-add-echo-effect-to-audio-signal.html
 % Add echo to sound 1
-
 figure(EchoDialog);
 
-global sound1;
-delay = 0.5; % 0.5s delay  
-alpha = 0.65; % echo strength  
-D = delay * Fs;  
-b = [1, zeros(1, D) ,alpha];  
-sound1 = filter(b, 1, sound1);
+% --- Executes on button press in highPassRadio1.
+function highPassRadio1_Callback(hObject, eventdata, handles)
+% Set filter1 value to high or low
+global filter1;
+buttonState = get(handles.highPassRadio1, 'Value');
+if buttonState == get(handles.highPassRadio1, 'Max')
+    filter1 = 'high';
+elseif buttonState == get(handles.highPassRadio1, 'Min')
+    filter1 = 'low';
+end
+
+% --- Executes on button press in lowPassRadio1.
+function lowPassRadio1_Callback(hObject, eventdata, handles)
+% Set filter1 value to high or low
+global filter1;
+buttonState = get(handles.lowPassRadio1, 'Value');
+if buttonState == get(handles.lowPassRadio1, 'Max')
+    filter1 = 'low';
+elseif buttonState == get(handles.lowPassRadio1, 'Min')
+    filter1 = 'high';
+end
+
+
+% --- Executes on button press in highPassRadio2.
+function highPassRadio2_Callback(hObject, eventdata, handles)
+% Set filter2 value to high or low
+global filter2;
+buttonState = get(handles.highPassRadio2, 'Value');
+if buttonState == get(handles.highPassRadio2, 'Max')
+    filter2 = 'high';
+elseif buttonState == get(handles.highPassRadio2, 'Min')
+    filter2 = 'low';
+end
+
+% --- Executes on button press in lowPassRadio2.
+function lowPassRadio2_Callback(hObject, eventdata, handles)
+% Set filter2 value to high or low
+global filter2;
+buttonState = get(handles.lowPassRadio2, 'Value');
+if buttonState == get(handles.lowPassRadio2, 'Max')
+    filter2 = 'low';
+elseif buttonState == get(handles.lowPassRadio2, 'Min')
+    filter2 = 'high';
+end
+
+
+% --- Executes on button press in filter1Options.
+function filter1Options_Callback(hObject, eventdata, handles)
+% hObject    handle to filter1Options (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in filter2Options.
+function filter2Options_Callback(hObject, eventdata, handles)
+% hObject    handle to filter2Options (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in echoButton2.
+function echoButton2_Callback(hObject, eventdata, handles)
+% Add echo to sound 2
+figure(EchoDialog);

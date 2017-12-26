@@ -22,7 +22,7 @@ function varargout = MonoDialog(varargin)
 
 % Edit the above text to modify the response to help MonoDialog
 
-% Last Modified by GUIDE v2.5 25-Dec-2017 23:55:39
+% Last Modified by GUIDE v2.5 26-Dec-2017 15:12:55
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,18 +73,17 @@ function varargout = MonoDialog_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% --- Executes on button press in cancelButton.
+function cancelButton_Callback(hObject, eventdata, handles)
+% Close dialogue box
+close(MonoDialog);
 
 
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% --- Executes on button press in applyButton.
+function applyButton_Callback(hObject, eventdata, handles)
+% convert stereo sound to mono by removing a channel
+convertMono();
+close(MonoDialog);
 
 
 % --- Executes on slider movement.
@@ -131,19 +130,24 @@ if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColo
 end
 
 
-% --- Executes on button press in radiobutton1.
-function radiobutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to radiobutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% --- Executes on button press in leftRadio.
+function leftRadio_Callback(hObject, eventdata, handles)
+% Set mono value to left or right
+global mono;
+buttonState = get(handles.leftRadio, 'Value');
+if buttonState == get(handles.leftRadio, 'Max')
+    mono = 'left';
+elseif buttonState == get(handles.leftRadio, 'Min')
+    mono = 'right';
+end
 
-% Hint: get(hObject,'Value') returns toggle state of radiobutton1
-
-
-% --- Executes on button press in radiobutton2.
-function radiobutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to radiobutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of radiobutton2
+% --- Executes on button press in rightRadio.
+function rightRadio_Callback(hObject, eventdata, handles)
+% Set mono value to left or right
+global mono;
+buttonState = get(handles.rightRadio, 'Value');
+if buttonState == get(handles.rightRadio, 'Max')
+    mono = 'right';
+elseif buttonState == get(handles.rightRadio, 'Min')
+    mono = 'left';
+end
