@@ -2,16 +2,30 @@ function [] = setDefault(handles)
 % Function to set default values to UI controls
 
 % Default variables
+global masterVolume;
 global volume1;
 global volume2;
 global filter1;
 global filter2;
 global mono;
+global info;
+masterVolume = 1;
 volume1 = 1;
 volume2 = 1;
 filter1 = 'high';
 filter2 = 'high';
 mono = 'left';
+info = '';
+
+% Default info messages set to none
+set(handles.infoMono1, 'String', '');
+set(handles.infoEcho1, 'String', '');
+set(handles.infoFilter1, 'String', '');
+set(handles.infoActive1, 'String', '');
+set(handles.infoMono2, 'String', '');
+set(handles.infoEcho2, 'String', '');
+set(handles.infoFilter2, 'String', '');
+set(handles.infoActive2, 'String', '');
 
 % Default source 1 info controls
 set(handles.audioFormatInfo1, 'String', '-');
@@ -36,12 +50,14 @@ set(handles.selectEnd2, 'String', '00:00:00');
 set(handles.totalTime2, 'String', '00:00:00');
 
 % Default slider settings
+
 set(handles.speedSlider1, 'Value', 1);
 set(handles.volumeSlider1, 'Value', 1);
 set(handles.filterSlider1, 'Value', 1);
 set(handles.speedSlider2, 'Value', 1);
 set(handles.volumeSlider2, 'Value', 1);
 set(handles.filterSlider2, 'Value', 1);
+set(handles.masterVolumeSlider, 'Value', 1);
 
 % Default slider text settings
 set(handles.speedSliderText1, 'String', '1.00');
@@ -50,5 +66,6 @@ set(handles.filterSliderText1, 'String', '1.00');
 set(handles.speedSliderText2, 'String', '1.00');
 set(handles.volumeSliderText2, 'String', '1.00');
 set(handles.filterSliderText2, 'String', '1.00');
+set(handles.masterVolumeSliderText, 'String', '1.00');
 set(handles.selectTime, 'String', '00:00:00');
 set(handles.exportFilename, 'String', 'Filename');

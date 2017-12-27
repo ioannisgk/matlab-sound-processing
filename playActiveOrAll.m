@@ -2,6 +2,7 @@ function [] = playActiveOrAll(handles, mode)
 % Function to play active channel according to speed and volume settings
 
 % Global variables for player and source 1
+global masterVolume;
 global player;
 global paused;
 global active;
@@ -78,7 +79,7 @@ elseif strcmp(mode, 'all')
     makeSoundsEqualLength();
     
     % Create new mixed sound
-    mixedSound = (sound1 * volume1) + (sound2 * volume2);
+    mixedSound = (sound1 * volume1 * masterVolume) + (sound2 * volume2 * masterVolume);
     player = audioplayer(mixedSound, rate1);
       
     % Play mixed sound

@@ -177,12 +177,14 @@ function speedSlider2_Callback(hObject, eventdata, handles)
 % Update slider text
 value = get(hObject, 'Value');
 set(handles.speedSliderText2, 'String', value);
+updateInfo('source2Information', 'Source 2 speed changed');
 
 % --- Executes on slider movement.
 function volumeSlider2_Callback(hObject, eventdata, handles)
 % Update slider text
 value = get(hObject, 'Value');
 set(handles.volumeSliderText2, 'String', value);
+updateInfo('source2Information', 'Source 2 volume changed');
 
 % --- Executes on slider movement.
 function filterSlider2_Callback(hObject, eventdata, handles)
@@ -325,12 +327,14 @@ function speedSlider1_Callback(hObject, eventdata, handles)
 % Update slider text
 value = get(hObject, 'Value');
 set(handles.speedSliderText1, 'String', value);
+updateInfo('source1Information', 'Source 1 speed changed');
 
 % --- Executes on slider movement.
 function volumeSlider1_Callback(hObject, eventdata, handles)
 % Update slider text
 value = get(hObject, 'Value');
 set(handles.volumeSliderText1, 'String', value);
+updateInfo('source1Information', 'Source 1 volume changed');
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
@@ -394,6 +398,11 @@ end
 stop(player);
 paused = 0;
 
+updateInfo('infoActive1', 'ACTIVE is enabled');
+updateInfo('source1Information', 'ACTIVE is enabled for source 1');
+updateInfo('source2Information', '');
+updateInfo('infoActive2', '');
+
 % --- Executes on button press in activeSource2.
 function activeSource2_Callback(hObject, eventdata, handles)
 % Set active value to 2 when source 2 is active
@@ -408,6 +417,11 @@ elseif buttonState == get(handles.activeSource2, 'Min')
 end
 stop(player);
 paused = 0;
+
+updateInfo('infoActive2', 'ACTIVE is enabled');
+updateInfo('source2Information', 'ACTIVE is enabled for source 2');
+updateInfo('source1Information', '');
+updateInfo('infoActive1', '');
 
 % --- Executes on button press in monoButton1.
 function monoButton1_Callback(hObject, eventdata, handles)
@@ -486,3 +500,24 @@ figure(FilterDialog);
 function echoButton2_Callback(hObject, eventdata, handles)
 % Add echo to sound 2
 figure(EchoDialog);
+
+
+% --- Executes on slider movement.
+function masterVolumeSlider_Callback(hObject, eventdata, handles)
+% Update slider text
+global masterVolume;
+value = get(hObject, 'Value');
+set(handles.masterVolumeSliderText, 'String', value);
+masterVolume = str2num(get(handles.masterVolumeSliderText,'String'));
+
+
+% --- Executes during object creation, after setting all properties.
+function masterVolumeSlider_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to masterVolumeSlider (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end

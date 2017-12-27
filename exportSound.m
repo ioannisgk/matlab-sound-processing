@@ -2,6 +2,7 @@ function [] = exportSound(handles)
 % Function to export mixed sound to wav file
 
 % Get global variables
+global masterVolume;
 global sound1;
 global rate1;
 global volume1;
@@ -27,7 +28,7 @@ duration2 = length(sound2)/rate2;
 makeSoundsEqualLength();
 
 % Create new mixed sound
-mixedSound = (sound1 * volume1) + (sound2 * volume2);
+mixedSound = (sound1 * volume1 * masterVolume) + (sound2 * volume2 * masterVolume);
 
 % Remove silence at the end of mixed track
 endSample = length(mixedSound) - numberofSamples;

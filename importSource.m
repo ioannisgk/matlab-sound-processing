@@ -60,7 +60,6 @@ if source == 1
     % Update source 1 trim controls
     set(handles.selectEnd1, 'String', time);
     set(handles.totalTime1, 'String', time);
-    set(handles.source1Information, 'String', ['File loaded: ' FileName]);
     
     % Update global variables
     FileName1 = FileName;
@@ -69,6 +68,24 @@ if source == 1
     numChannels1 = numChannels;
     duration1 = duration;
     active = 1;
+
+    % Set source 1 info and sliders to default
+    set(handles.speedSlider1, 'Value', 1);
+    set(handles.volumeSlider1, 'Value', 1);
+    set(handles.filterSlider1, 'Value', 1);
+    set(handles.speedSliderText1, 'String', '1.00');
+    set(handles.volumeSliderText1, 'String', '1.00');
+    set(handles.filterSliderText1, 'String', '1.00');
+    set(handles.infoMono1, 'String', '');
+    set(handles.infoEcho1, 'String', '');
+    set(handles.infoFilter1, 'String', '');
+    set(handles.infoActive1, 'String', '');
+        
+    % Update info mesages
+    updateInfo('infoActive1', 'ACTIVE is enabled');
+    updateInfo('source1Information', ['ACTIVE is enabled, source 1 imported: ' FileName]);
+    updateInfo('source2Information', '');
+    updateInfo('infoActive2', '');
     
 elseif source == 2
     
@@ -92,7 +109,6 @@ elseif source == 2
     % Update source 2 trim controls
     set(handles.selectEnd2, 'String', time);
     set(handles.totalTime2, 'String', time);
-    set(handles.source2Information, 'String', ['File loaded: ' FileName]);
     
     % Update global variables
     FileName2 = FileName;
@@ -101,4 +117,23 @@ elseif source == 2
     numChannels2 = numChannels;
     duration2 = duration;
     active = 2;
+    
+    % Set source 2 info and sliders to default
+    set(handles.speedSlider2, 'Value', 1);
+    set(handles.volumeSlider2, 'Value', 1);
+    set(handles.filterSlider2, 'Value', 1);
+    set(handles.speedSliderText2, 'String', '1.00');
+    set(handles.volumeSliderText2, 'String', '1.00');
+    set(handles.filterSliderText2, 'String', '1.00');
+    set(handles.infoMono2, 'String', '');
+    set(handles.infoEcho2, 'String', '');
+    set(handles.infoFilter2, 'String', '');
+    set(handles.infoActive2, 'String', '');
+    
+    % Update info mesages
+    updateInfo('infoActive2', 'ACTIVE is enabled');
+    updateInfo('source2Information', ['ACTIVE is enabled, source 2 imported: ' FileName]);
+    updateInfo('source1Information', '');
+    updateInfo('infoActive1', '');
+    
 end
