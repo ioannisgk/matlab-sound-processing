@@ -9,6 +9,11 @@ global rate2;
 global filter2;
 global Hd;
 
+% Change poimter to indicate that GUI is busy
+% https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
+set(handles.figure1, 'pointer', 'watch');
+drawnow;
+
 % https://www.mathworks.com/matlabcentral/answers/37462-a-simple-lowpass-filter
 % https://www.mathworks.com/help/signal/ref/fdesign.lowpass.html
 % https://www.mathworks.com/help/signal/ref/fdesign.highpass.html
@@ -54,3 +59,6 @@ elseif strcmp(filter2, 'high') && source == 2
     updateInfo('source2Information', 'High Pass Filter applied to source 2');
     
 end
+
+% Restore pointer
+set(handles.figure1, 'pointer', 'arrow');

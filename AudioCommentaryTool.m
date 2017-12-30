@@ -156,21 +156,21 @@ end
 %-------------------------------------------------------------------------%
 %-------------------------------------------------------------------------%
 
-% --- Executes on button press in togglebutton8.
-function togglebutton8_Callback(hObject, eventdata, handles)
-% hObject    handle to togglebutton8 (see GCBO)
+% --- Executes on button press in micButton1.
+function micButton1_Callback(hObject, eventdata, handles)
+% hObject    handle to micButton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of togglebutton8
+% Hint: get(hObject,'Value') returns toggle state of micButton1
 
-% --- Executes on button press in togglebutton9.
-function togglebutton9_Callback(hObject, eventdata, handles)
-% hObject    handle to togglebutton9 (see GCBO)
+% --- Executes on button press in micButton2.
+function micButton2_Callback(hObject, eventdata, handles)
+% hObject    handle to micButton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of togglebutton9
+% Hint: get(hObject,'Value') returns toggle state of micButton2
 
 % --- Executes on slider movement.
 function speedSlider2_Callback(hObject, eventdata, handles)
@@ -520,4 +520,18 @@ function masterVolumeSlider_CreateFcn(hObject, eventdata, handles)
 % Hint: slider controls usually have a light gray background.
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
+
+% --- Executes on button press in exitButton.
+function exitButton_Callback(hObject, eventdata, handles)
+% Offer option to properly close application and Matlab
+% https://www.mathworks.com/help/matlab/ref/quit.html
+button = questdlg('Are you ready to quit?','Exit Dialog','Yes','No','No');
+switch button
+    case 'Yes',
+        clear all;
+        quit force;
+    case 'No',
+        quit cancel;
 end

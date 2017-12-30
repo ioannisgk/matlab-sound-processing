@@ -95,6 +95,11 @@ global sound2;
 global rate2;
 global active;
 
+% Change poimter to indicate that GUI is busy
+% https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
+set(handles.figure1, 'pointer', 'watch');
+drawnow;
+
 % http://ashanpeiris.blogspot.gr/2015/03/how-to-add-echo-effect-to-audio-signal.html
 delay = str2num(get(handles.delayText, 'String'));
 strength = str2num(get(handles.strengthText, 'String'));
@@ -116,6 +121,9 @@ elseif active == 2
     updateInfo('source2Information', 'Added ECHO to source 2');
     
 end
+
+% Restore pointer
+set(handles.figure1, 'pointer', 'arrow');
 
 close(EchoDialog);
 

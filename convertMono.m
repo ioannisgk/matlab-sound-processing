@@ -1,10 +1,15 @@
-function [] = convertMono()
+function [] = convertMono(handles)
 % Function to convert stereo sound to mono
 
 global active;
 global sound1;
 global sound2;
 global mono;
+
+% Change poimter to indicate that GUI is busy
+% https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
+set(handles.figure1, 'pointer', 'watch');
+drawnow;
 
 if active == 1
     
@@ -38,3 +43,6 @@ elseif active == 2
         updateInfo('source2Information', 'MONO is enabled, left channel is removed');
     end
 end
+
+% Restore pointer
+set(handles.figure1, 'pointer', 'arrow');

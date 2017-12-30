@@ -11,11 +11,27 @@ global sound2;
 global rate2;
 global volume2;
 global duration2;
+global valid;
 
 % Convert start time in seconds
 startTime = get(handles.selectTime,'String');
+endTime = get(handles.selectEnd2,'String');
 startSeconds = time2seconds(startTime);
-    
+endSeconds = time2seconds(endTime);
+
+% Check for input errors and show error messages and set valid to 0
+% https://www.mathworks.com/help/matlab/ref/msgbox.html
+if (length(sound1) == 0) || (length(sound2) == 0)
+    h = msgbox('Two audio files are not imported. Please import two audio files first.', 'Error');
+    valid = 0;
+elseif length(startSeconds) == 0
+    h = msgbox('Invalid input detected. Please enter valid numbers in time field.', 'Error');
+    valid = 0;
+elseif startSeconds >= endSeconds
+    h = msgbox('Start time can not be greater than end time. Select a different start time', 'Error');
+    valid = 0;
+end
+
 % Calculate silence samples
 numberofSamples = startSeconds * rate1;
 
@@ -39,6 +55,19 @@ mixedSound = mixedSound(1:round(endSample),:);
 mixedSound = mixedSound./(max(abs(mixedSound)));
     
 % Save mixed sound to file
-exportFilename = get(handles.exportFilename,'String');
-exportFilename = [exportFilename '.wav'];
-audiowrite(exportFilename, mixedSound, rate1);
+% https://www.mathworks.com/help/matlab/ref/uiputfile.html
+if valid == 1
+    [exportFilename, pathName] = uiputfile('*.wav','Save the new mix as a wav file');
+    
+    % Change poimter to indicate that GUI is busy
+    % https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
+    set(handles.figure1, 'pointer', 'watch');
+    drawnow;
+
+    audiowrite(exportFilename, mixedSound, rate1);
+    
+    % Restore pointer
+    set(handles.figure1, 'pointer', 'arrow');
+    
+    h = msgbox('Mixed audio file was saved successfully!', 'Success');
+end

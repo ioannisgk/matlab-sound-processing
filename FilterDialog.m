@@ -202,6 +202,11 @@ global filter1;
 global filter2;
 global active;
 
+% Change poimter to indicate that GUI is busy
+% https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
+set(handles.figure1, 'pointer', 'watch');
+drawnow;
+
 if strcmp(filter1, 'low') && active == 1
     
     calculateLowPass(handles, 'all-settings');
@@ -223,3 +228,6 @@ elseif strcmp(filter2, 'high') && active == 2
     fvtool(Hd);
     
 end
+
+% Restore pointer
+set(handles.figure1, 'pointer', 'arrow');

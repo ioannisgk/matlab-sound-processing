@@ -9,6 +9,7 @@ global filter1;
 global filter2;
 global mono;
 global info;
+global valid;
 masterVolume = 1;
 volume1 = 1;
 volume2 = 1;
@@ -16,6 +17,7 @@ filter1 = 'high';
 filter2 = 'high';
 mono = 'left';
 info = '';
+valid = 1;
 
 % Default info messages set to none
 set(handles.infoMono1, 'String', '');
@@ -68,4 +70,42 @@ set(handles.volumeSliderText2, 'String', '1.00');
 set(handles.filterSliderText2, 'String', '1.00');
 set(handles.masterVolumeSliderText, 'String', '1.00');
 set(handles.selectTime, 'String', '00:00:00');
-set(handles.exportFilename, 'String', 'Filename');
+
+% Default button images
+% https://www.mathworks.com/matlabcentral/answers/45634-how-to-put-a-picture-on-a-button-in-a-gui
+set(handles.importSource1Button, 'CData', imread('/root/Matlab-Project/images/import.png'));
+set(handles.importSource2Button, 'CData', imread('/root/Matlab-Project/images/import.png'));
+set(handles.trimSource1, 'CData', imread('/root/Matlab-Project/images/trim.png'));
+set(handles.trimSource2, 'CData', imread('/root/Matlab-Project/images/trim.png'));
+set(handles.playAllButton, 'CData', imread('/root/Matlab-Project/images/play-all.png'));
+set(handles.playActiveButton, 'CData', imread('/root/Matlab-Project/images/play.png'));
+set(handles.pauseButton, 'CData', imread('/root/Matlab-Project/images/pause.png'));
+set(handles.stopButton, 'CData', imread('/root/Matlab-Project/images/stop.png'));
+set(handles.micButton1, 'CData', imread('/root/Matlab-Project/images/mic.png'));
+set(handles.micButton2, 'CData', imread('/root/Matlab-Project/images/mic.png'));
+set(handles.exportButton, 'CData', imread('/root/Matlab-Project/images/export.png'));
+
+% Set specific controls to off to avoid errors on empty objects
+% https://www.mathworks.com/matlabcentral/answers/104636-set-enable-propeprty-to-off
+set(handles.filterSlider1,'Enable','off');
+set(handles.filter1Options,'Enable','off');
+set(handles.monoButton1,'Enable','off');
+set(handles.echoButton1,'Enable','off');
+set(handles.speedSlider1,'Enable','off');
+set(handles.volumeSlider1,'Enable','off');
+set(handles.activeSource1,'Enable','off');
+set(handles.selectStart1,'Enable','inactive');
+set(handles.selectEnd1,'Enable','inactive');
+
+set(handles.filterSlider2,'Enable','off');
+set(handles.filter2Options,'Enable','off');
+set(handles.monoButton2,'Enable','off');
+set(handles.echoButton2,'Enable','off');
+set(handles.speedSlider2,'Enable','off');
+set(handles.volumeSlider2,'Enable','off');
+set(handles.activeSource2,'Enable','off');
+set(handles.selectStart2,'Enable','inactive');
+set(handles.selectEnd2,'Enable','inactive');
+
+set(handles.selectTime,'Enable','off');
+set(handles.masterVolumeSlider,'Enable','off');

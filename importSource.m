@@ -20,8 +20,15 @@ global numChannels2;
 global duration2;
 global m2;
 
-% Let user to browse for a file
-[FileName,PathName] = uigetfile('*.wav*','Select an audio file');
+% Enable the user to browse for a file
+% https://www.mathworks.com/help/matlab/ref/uigetfile.html
+[FileName,PathName] = uigetfile({'*.wav';'*.mp3';'*.avi';'*.mpg'},...
+'Select a file with audio source: *.wav, *.mp3, *.avi, *.mpg');
+
+% Change poimter to indicate that GUI is busy
+% https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
+set(handles.figure1, 'pointer', 'watch');
+drawnow;
 
 % Read the audio file
 [sound,rate] = audioread(FileName);
@@ -87,6 +94,19 @@ if source == 1
     updateInfo('source2Information', '');
     updateInfo('infoActive2', '');
     
+    % Enable controls for source 1
+    set(handles.filterSlider1,'Enable','on');
+    set(handles.filter1Options,'Enable','on');
+    set(handles.monoButton1,'Enable','on');
+    set(handles.echoButton1,'Enable','on');
+    set(handles.speedSlider1,'Enable','on');
+    set(handles.volumeSlider1,'Enable','on');
+    set(handles.activeSource1,'Enable','on');
+    set(handles.selectStart1,'Enable','on');
+    set(handles.selectEnd1,'Enable','on');
+    set(handles.selectTime,'Enable','on');
+    set(handles.masterVolumeSlider,'Enable','on');
+    
 elseif source == 2
     
     paused = 0;
@@ -136,4 +156,20 @@ elseif source == 2
     updateInfo('source1Information', '');
     updateInfo('infoActive1', '');
     
+    % Enable controls for source 2
+    set(handles.filterSlider2,'Enable','on');
+    set(handles.filter2Options,'Enable','on');
+    set(handles.monoButton2,'Enable','on');
+    set(handles.echoButton2,'Enable','on');
+    set(handles.speedSlider2,'Enable','on');
+    set(handles.volumeSlider2,'Enable','on');
+    set(handles.activeSource2,'Enable','on');
+    set(handles.selectStart2,'Enable','on');
+    set(handles.selectEnd2,'Enable','on');
+    set(handles.selectTime,'Enable','on');
+    set(handles.masterVolumeSlider,'Enable','on');
+    
 end
+
+% Restore pointer
+set(handles.figure1, 'pointer', 'arrow');

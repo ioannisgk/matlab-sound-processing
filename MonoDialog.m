@@ -82,7 +82,7 @@ close(MonoDialog);
 % --- Executes on button press in applyButton.
 function applyButton_Callback(hObject, eventdata, handles)
 % convert stereo sound to mono by removing a channel
-convertMono();
+convertMono(handles);
 close(MonoDialog);
 
 

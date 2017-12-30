@@ -19,9 +19,22 @@ if source == 1
     % Convert start time and end time in seconds
     startTime = get(handles.selectStart1,'String');
     endTime = get(handles.selectEnd1,'String');
+    
     startSeconds = time2seconds(startTime);
     endSeconds = time2seconds(endTime);
     
+    % Check for input errors and show error messages
+    % https://www.mathworks.com/help/matlab/ref/msgbox.html
+    if length(sound1) == 0
+        h = msgbox('Audio file is not imported. Please import an audio file first.', 'Error');
+    elseif (length(startSeconds) == 0) || (length(endSeconds) == 0)
+        h = msgbox('Invalid input detected. Please enter valid numbers in time field.', 'Error');
+    elseif endSeconds == 0
+        h = msgbox('End time can not be 0 seconds. Select a different end time', 'Error');
+    elseif startSeconds >= endSeconds
+        h = msgbox('Start time can not be greater than end time. Select a different start time', 'Error');
+    end
+
     % Calculate new start and end samples
     startSample = startSeconds * rate1;
     endSample = endSeconds * rate1;
@@ -57,6 +70,18 @@ elseif source == 2
     % Calculate new start and end samples
     startSample = startSeconds * rate2;
     endSample = endSeconds * rate2;
+    
+    % Check for input errors and show error messages
+    % https://www.mathworks.com/help/matlab/ref/msgbox.html
+    if length(sound2) == 0
+        h = msgbox('Audio file is not imported. Please import an audio file first.', 'Error');
+    elseif (length(startSeconds) == 0) || (length(endSeconds) == 0)
+        h = msgbox('Invalid input detected. Please enter valid numbers in time field.', 'Error');
+    elseif endSeconds == 0
+        h = msgbox('End time can not be 0 seconds. Select a different end time', 'Error');
+    elseif startSeconds >= endSeconds
+        h = msgbox('Start time can not be greater than end time. Select a different start time', 'Error');
+    end
     
     % Update new sound
     sound2 = sound2(round(startSample+1):round(endSample),:);
