@@ -15,7 +15,7 @@ global valid;
 
 % Convert start time in seconds
 startTime = get(handles.selectTime,'String');
-endTime = get(handles.selectEnd2,'String');
+endTime = get(handles.selectEnd1,'String');
 startSeconds = time2seconds(startTime);
 endSeconds = time2seconds(endTime);
 

@@ -7,7 +7,8 @@ global volume1;
 global volume2;
 global filter1;
 global filter2;
-global mono;
+global mono1;
+global mono2;
 global info;
 global valid;
 masterVolume = 1;
@@ -15,7 +16,8 @@ volume1 = 1;
 volume2 = 1;
 filter1 = 'high';
 filter2 = 'high';
-mono = 'left';
+mono1 = 'left';
+mono2 = 'left';
 info = '';
 valid = 1;
 
@@ -84,6 +86,7 @@ set(handles.stopButton, 'CData', imread('/root/Matlab-Project/images/stop.png'))
 set(handles.micButton1, 'CData', imread('/root/Matlab-Project/images/mic.png'));
 set(handles.micButton2, 'CData', imread('/root/Matlab-Project/images/mic.png'));
 set(handles.exportButton, 'CData', imread('/root/Matlab-Project/images/export.png'));
+set(handles.exitButton, 'CData', imread('/root/Matlab-Project/images/exit.png'));
 
 % Set specific controls to off to avoid errors on empty objects
 % https://www.mathworks.com/matlabcentral/answers/104636-set-enable-propeprty-to-off

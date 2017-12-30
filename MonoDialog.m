@@ -133,21 +133,41 @@ end
 % --- Executes on button press in leftRadio.
 function leftRadio_Callback(hObject, eventdata, handles)
 % Set mono value to left or right
-global mono;
+global active;
+global mono1;
+global mono2;
 buttonState = get(handles.leftRadio, 'Value');
 if buttonState == get(handles.leftRadio, 'Max')
-    mono = 'left';
+    if active == 1
+        mono1 = 'left';
+    elseif active == 2
+        mono2 = 'left';
+    end
 elseif buttonState == get(handles.leftRadio, 'Min')
-    mono = 'right';
+    if active == 1
+        mono1 = 'right';
+    elseif active == 2
+        mono2 = 'right';
+    end
 end
 
 % --- Executes on button press in rightRadio.
 function rightRadio_Callback(hObject, eventdata, handles)
 % Set mono value to left or right
-global mono;
+global active;
+global mono1;
+global mono2;
 buttonState = get(handles.rightRadio, 'Value');
 if buttonState == get(handles.rightRadio, 'Max')
-    mono = 'right';
+    if active == 1
+        mono1 = 'right';
+    elseif active == 2
+        mono2 = 'right';
+    end
 elseif buttonState == get(handles.rightRadio, 'Min')
-    mono = 'left';
+    if active == 1
+        mono1 = 'left';
+    elseif active == 2
+        mono2 = 'left';
+    end
 end

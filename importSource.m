@@ -11,6 +11,7 @@ global numChannels1;
 global duration1;
 global active;
 global m1;
+global axeHandler1;
 
 % Global variables for source 2
 global FileName2;
@@ -19,6 +20,7 @@ global rate2;
 global numChannels2;
 global duration2;
 global m2;
+global axeHandler2;
 
 % Enable the user to browse for a file
 % https://www.mathworks.com/help/matlab/ref/uigetfile.html
@@ -50,6 +52,7 @@ if source == 1
     paused = 0;
     
     % Plot sound and set axis labels and max length
+    axeHandler1 = handles.axes1;
     axes(handles.axes1);
     plotSound(sound, rate);
     
@@ -112,6 +115,7 @@ elseif source == 2
     paused = 0;
     
     % Plot sound and set axis labels and max length
+    axeHandler2 = handles.axes2;
     axes(handles.axes2);
     plotSound(sound, rate);
     

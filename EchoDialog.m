@@ -109,6 +109,9 @@ if active == 1
     D = delay * rate1;  
     b = [1, zeros(1, round(D)), strength];  
     sound1 = filter(b, 1, sound1);
+    
+    % Update sound information
+    updateSound(sound1, rate1, 1);
     updateInfo('infoEcho1', 'ECHO is enabled');
     updateInfo('source1Information', 'Added ECHO to source 1');
     
@@ -117,6 +120,9 @@ elseif active == 2
     D = delay * rate2;  
     b = [1, zeros(1, round(D)), strength];  
     sound2 = filter(b, 1, sound2);
+    
+    % Update sound information
+    updateSound(sound2, rate2, 2);
     updateInfo('infoEcho2', 'ECHO is enabled');
     updateInfo('source2Information', 'Added ECHO to source 2');
     
