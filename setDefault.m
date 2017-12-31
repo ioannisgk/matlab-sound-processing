@@ -43,18 +43,17 @@ set(handles.channelsInfo2, 'String', '-');
 set(handles.sampleRateInfo2, 'String', '-');
 set(handles.source2Information, 'String', 'Source 2 Information');
 
-% Default source 1 trim controls
+% Default source trim controls
 set(handles.selectStart1, 'String', '00:00:00');
 set(handles.selectEnd1, 'String', '00:00:00');
 set(handles.totalTime1, 'String', '00:00:00');
-
-% Default source 2 trim controls
 set(handles.selectStart2, 'String', '00:00:00');
 set(handles.selectEnd2, 'String', '00:00:00');
 set(handles.totalTime2, 'String', '00:00:00');
+set(handles.recStart1, 'String', '00:00');
+set(handles.recStart2, 'String', '00:00');
 
 % Default slider settings
-
 set(handles.speedSlider1, 'Value', 1);
 set(handles.volumeSlider1, 'Value', 1);
 set(handles.filterSlider1, 'Value', 1);
@@ -62,6 +61,8 @@ set(handles.speedSlider2, 'Value', 1);
 set(handles.volumeSlider2, 'Value', 1);
 set(handles.filterSlider2, 'Value', 1);
 set(handles.masterVolumeSlider, 'Value', 1);
+set(handles.recSlider1, 'Value', 1);
+set(handles.recSlider2, 'Value', 1);
 
 % Default slider text settings
 set(handles.speedSliderText1, 'String', '1.00');
@@ -71,6 +72,8 @@ set(handles.speedSliderText2, 'String', '1.00');
 set(handles.volumeSliderText2, 'String', '1.00');
 set(handles.filterSliderText2, 'String', '1.00');
 set(handles.masterVolumeSliderText, 'String', '1.00');
+set(handles.recSliderText1, 'String', '1.00');
+set(handles.recSliderText2, 'String', '1.00');
 set(handles.selectTime, 'String', '00:00:00');
 
 % Default button images
@@ -83,8 +86,8 @@ set(handles.playAllButton, 'CData', imread('/root/Matlab-Project/images/play-all
 set(handles.playActiveButton, 'CData', imread('/root/Matlab-Project/images/play.png'));
 set(handles.pauseButton, 'CData', imread('/root/Matlab-Project/images/pause.png'));
 set(handles.stopButton, 'CData', imread('/root/Matlab-Project/images/stop.png'));
-set(handles.micButton1, 'CData', imread('/root/Matlab-Project/images/mic.png'));
-set(handles.micButton2, 'CData', imread('/root/Matlab-Project/images/mic.png'));
+set(handles.micButton1, 'CData', imread('/root/Matlab-Project/images/rec.png'));
+set(handles.micButton2, 'CData', imread('/root/Matlab-Project/images/rec.png'));
 set(handles.exportButton, 'CData', imread('/root/Matlab-Project/images/export.png'));
 set(handles.exitButton, 'CData', imread('/root/Matlab-Project/images/exit.png'));
 

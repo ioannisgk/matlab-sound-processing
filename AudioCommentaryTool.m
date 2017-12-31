@@ -158,17 +158,15 @@ end
 
 % --- Executes on button press in micButton1.
 function micButton1_Callback(hObject, eventdata, handles)
-% hObject    handle to micButton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% Import recording 1 and update controls
+importRecording(handles, 1);
 
 % Hint: get(hObject,'Value') returns toggle state of micButton1
 
 % --- Executes on button press in micButton2.
 function micButton2_Callback(hObject, eventdata, handles)
-% hObject    handle to micButton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% Import recording 2 and update controls
+importRecording(handles, 2);
 
 % Hint: get(hObject,'Value') returns toggle state of micButton2
 
@@ -534,4 +532,88 @@ switch button
         quit force;
     case 'No',
         quit cancel;
+end
+
+
+
+function recStart1_Callback(hObject, eventdata, handles)
+% hObject    handle to recStart1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of recStart1 as text
+%        str2double(get(hObject,'String')) returns contents of recStart1 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function recStart1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to recStart1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function recStart2_Callback(hObject, eventdata, handles)
+% hObject    handle to recStart2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of recStart2 as text
+%        str2double(get(hObject,'String')) returns contents of recStart2 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function recStart2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to recStart2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on slider movement.
+function recSlider2_Callback(hObject, eventdata, handles)
+% Update slider text
+value = get(hObject, 'Value');
+set(handles.recSliderText2, 'String', value);
+
+
+% --- Executes during object creation, after setting all properties.
+function recSlider2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to recSlider2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
+
+% --- Executes on slider movement.
+function recSlider1_Callback(hObject, eventdata, handles)
+% Update slider text
+value = get(hObject, 'Value');
+set(handles.recSliderText1, 'String', value);
+
+
+% --- Executes during object creation, after setting all properties.
+function recSlider1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to recSlider1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
