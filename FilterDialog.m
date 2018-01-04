@@ -75,7 +75,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = FilterDialog_OutputFcn(hObject, eventdata, handles) 
+function varargout = FilterDialog_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -202,31 +202,31 @@ global filter1;
 global filter2;
 global active;
 
-% Change poimter to indicate that GUI is busy
+% Change pointer to indicate that GUI is busy
 % https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
 set(handles.figure1, 'pointer', 'watch');
 drawnow;
 
 if strcmp(filter1, 'low') && active == 1
-    
+
     calculateLowPass(handles, 'all-settings');
     fvtool(Hd);
-    
+
 elseif strcmp(filter1, 'high') && active == 1
-    
+
     calculateHighPass(handles, 'all-settings');
     fvtool(Hd);
 
 elseif strcmp(filter2, 'low') && active == 2
-    
+
     calculateLowPass(handles, 'all-settings');
     fvtool(Hd);
-    
+
 elseif strcmp(filter2, 'high') && active == 2
-    
+
     calculateHighPass(handles, 'all-settings');
     fvtool(Hd);
-    
+
 end
 
 % Restore pointer

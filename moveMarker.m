@@ -34,7 +34,7 @@ while isplaying(player)
         
     end
                 
-    % Fix for exitting loop when player is stopped
+    % Fix for exiting loop when player is stopped
     % https://www.mathworks.com/matlabcentral/answers/46603-audioplayer-isplaying-won-t-exit-tight-loop
     pause(0.00001);         
 end

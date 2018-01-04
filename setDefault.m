@@ -77,6 +77,7 @@ set(handles.recSliderText2, 'String', '1.00');
 set(handles.selectTime, 'String', '00:00:00');
 
 % Default button images
+% https://www.mathworks.com/help/matlab/ref/imread.html
 % https://www.mathworks.com/matlabcentral/answers/45634-how-to-put-a-picture-on-a-button-in-a-gui
 set(handles.importSource1Button, 'CData', imread('/root/Matlab-Project/images/import.png'));
 set(handles.importSource2Button, 'CData', imread('/root/Matlab-Project/images/import.png'));

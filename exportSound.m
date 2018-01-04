@@ -53,21 +53,21 @@ mixedSound = mixedSound(1:round(endSample),:);
 % Normalize mixed sound to prevent clipping
 % https://www.mathworks.com/matlabcentral/answers/55652-warning-data-clipped-during-write-to-file
 mixedSound = mixedSound./(max(abs(mixedSound)));
-    
+
 % Save mixed sound to file
 % https://www.mathworks.com/help/matlab/ref/uiputfile.html
 if valid == 1
     [exportFilename, pathName] = uiputfile('*.wav','Save the new mix as a wav file');
-    
-    % Change poimter to indicate that GUI is busy
+
+    % Change pointer to indicate that GUI is busy
     % https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
     set(handles.figure1, 'pointer', 'watch');
     drawnow;
 
     audiowrite(exportFilename, mixedSound, rate1);
-    
+
     % Restore pointer
     set(handles.figure1, 'pointer', 'arrow');
-    
+
     h = msgbox('Mixed audio file was saved successfully!', 'Success');
 end

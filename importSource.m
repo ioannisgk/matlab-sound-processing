@@ -27,7 +27,7 @@ global axeHandler2;
 [FileName,PathName] = uigetfile({'*.wav';'*.mp3';'*.avi';'*.mpg'},...
 'Select a file with audio source: *.wav, *.mp3, *.avi, *.mpg');
 
-% Change poimter to indicate that GUI is busy
+% Change pointer to indicate that GUI is busy
 % https://www.mathworks.com/matlabcentral/answers/11411-how-to-indicate-that-gui-is-busy-running
 set(handles.figure1, 'pointer', 'watch');
 drawnow;
@@ -48,29 +48,29 @@ numChannels = rawFile(23);
 fclose(fileID);
 
 if source == 1
-    
+
     paused = 0;
-    
+
     % Plot sound and set axis labels and max length
     axeHandler1 = handles.axes1;
     axes(handles.axes1);
     plotSound(sound, rate);
-    
+
     % Delete old marker and create a new one
     if exist('m1', 'var')
         delete(m1);
     end
     m1=line([0,0],[-30,30],'color','r','marker', 'o', 'linewidth', 1);
-    
+
     % Update source 1 controls
     set(handles.audioFormatInfo1, 'String', format);
     set(handles.channelsInfo1, 'String', numChannels);
     set(handles.sampleRateInfo1, 'String', rate);
-    
+
     % Update source 1 trim controls
     set(handles.selectEnd1, 'String', time);
     set(handles.totalTime1, 'String', time);
-    
+
     % Update global variables
     FileName1 = FileName;
     sound1 = sound;
@@ -90,13 +90,13 @@ if source == 1
     set(handles.infoEcho1, 'String', '');
     set(handles.infoFilter1, 'String', '');
     set(handles.infoActive1, 'String', '');
-        
+
     % Update info mesages
     updateInfo('infoActive1', 'ACTIVE is enabled');
     updateInfo('source1Information', ['ACTIVE is enabled, source 1 imported: ' FileName]);
     updateInfo('source2Information', '');
     updateInfo('infoActive2', '');
-    
+
     % Enable controls for source 1
     set(handles.filterSlider1,'Enable','on');
     set(handles.filter1Options,'Enable','on');
@@ -109,16 +109,16 @@ if source == 1
     set(handles.selectEnd1,'Enable','on');
     set(handles.selectTime,'Enable','on');
     set(handles.masterVolumeSlider,'Enable','on');
-    
+
 elseif source == 2
-    
+
     paused = 0;
-    
+
     % Plot sound and set axis labels and max length
     axeHandler2 = handles.axes2;
     axes(handles.axes2);
     plotSound(sound, rate);
-    
+
     % Delete old marker and create a new one
     if exist('m2', 'var')
         delete(m2);
@@ -129,11 +129,11 @@ elseif source == 2
     set(handles.audioFormatInfo2, 'String', format);
     set(handles.channelsInfo2, 'String', numChannels);
     set(handles.sampleRateInfo2, 'String', rate);
-    
+
     % Update source 2 trim controls
     set(handles.selectEnd2, 'String', time);
     set(handles.totalTime2, 'String', time);
-    
+
     % Update global variables
     FileName2 = FileName;
     sound2 = sound;
@@ -141,7 +141,7 @@ elseif source == 2
     numChannels2 = numChannels;
     duration2 = duration;
     active = 2;
-    
+
     % Set source 2 info and sliders to default
     set(handles.speedSlider2, 'Value', 1);
     set(handles.volumeSlider2, 'Value', 1);
@@ -153,13 +153,13 @@ elseif source == 2
     set(handles.infoEcho2, 'String', '');
     set(handles.infoFilter2, 'String', '');
     set(handles.infoActive2, 'String', '');
-    
+
     % Update info mesages
     updateInfo('infoActive2', 'ACTIVE is enabled');
     updateInfo('source2Information', ['ACTIVE is enabled, source 2 imported: ' FileName]);
     updateInfo('source1Information', '');
     updateInfo('infoActive1', '');
-    
+
     % Enable controls for source 2
     set(handles.filterSlider2,'Enable','on');
     set(handles.filter2Options,'Enable','on');
@@ -172,7 +172,7 @@ elseif source == 2
     set(handles.selectEnd2,'Enable','on');
     set(handles.selectTime,'Enable','on');
     set(handles.masterVolumeSlider,'Enable','on');
-    
+
 end
 
 % Restore pointer

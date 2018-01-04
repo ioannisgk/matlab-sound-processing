@@ -535,7 +535,6 @@ switch button
 end
 
 
-
 function recStart1_Callback(hObject, eventdata, handles)
 % hObject    handle to recStart1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
